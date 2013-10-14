@@ -5,32 +5,19 @@
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="css/grid.css" rel="stylesheet">
 </head>
-<body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 enemy"></div>
-        <div class="col-md-3 me"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
+<body ng-app="GameApp" ng-controller="GameCtrl">
+    <div class="container">
+        <h1>Game</h1>
+
+        <div class="row" ng-repeat="y in range">
+            <div class="col-md-3" ng-repeat="x in range" ng-click="updatePlayerLocation(x, y)" ng-class="{p1: containsPlayer(0, x, y), p2: containsPlayer(1, x, y)}">
+            </div>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-    </div>
-</div>
+
+    <pre ng-bind="players|json"></pre>
+ 
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="js/gridgame.js"></script>
 </body>
 </html>
