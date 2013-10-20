@@ -7,17 +7,18 @@
 </head>
 <body ng-app="GameApp" ng-controller="GameCtrl">
     <div class="container">
-        <h1>Game</h1>
+        <!-- tabindex makes the div selectable and able to receive input -->
+        <div class="well" tabindex="0" ng-keypress="movePlayer($event)">
+            <h1>Game</h1>
 
-        <div class="row" ng-repeat="y in range">
-            <div class="col-md-3" ng-repeat="x in range" ng-click="updatePlayerLocation(x, y)" ng-class="{p1: containsPlayer(0, x, y), p2: containsPlayer(1, x, y)}">
+            <div class="row" ng-repeat="y in range">
+                <div class="col-md-3" ng-repeat="x in range" ng-click="updatePlayerLocation(x, y)" ng-class="{p1: containsPlayer(0, x, y), p2: containsPlayer(1, x, y)}">
+                </div>
             </div>
+            <pre ng-bind="players|json"></pre>
         </div>
     </div>
-
-    <pre ng-bind="players|json"></pre>
- 
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.js"></script>
     <script type="text/javascript" src="js/gridgame.js"></script>
 </body>
 </html>
