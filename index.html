@@ -9,7 +9,7 @@
     <div class="container">
         <div class="well">
             <h1>Game</h1>
-
+            {{ game.gameMessage }}
             <div class="row" ng-repeat="y in game.range">
                 <div class="col-md-3" ng-repeat="x in game.range" ng-click="game.updatePlayerLocation(x, y)" ng-class="{p1: game.containsPlayer(0, x, y), p2: game.containsPlayer(1, x, y)}">
                 </div>

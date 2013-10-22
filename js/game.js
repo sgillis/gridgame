@@ -8,11 +8,14 @@ function Game(){
     this.player_to_move = 0;
     this.last_moves = [-1, -1];
 
+    this.gameMessage = 'P1 to move';
+
     this.movePlayer = function($event){
+        // Get move
         // Move can be
-        //  8
-        // 4 6
         //  0
+        // 4 6
+        //  8
         var move = -1;
         if(this.player_to_move == 0){
             if($event.keyCode == 119){
@@ -59,9 +62,9 @@ function Game(){
                 }
             }
         }
+
+        // Make move
         if(move > -1){
-            // TODO fix this
-            this.last_moves[this.player_to_move] = move;
             if(move == 0){
                 this.players[this.player_to_move][1] -= 1;
             } else if(move == 4){
@@ -71,8 +74,37 @@ function Game(){
             } else if(move == 6){
                 this.players[this.player_to_move][0] += 1;
             }
-            this.player_to_move = (this.player_to_move + 1) % 2;
         }
+
+        // Check game status
+        if(this.player_to_move == 0){
+            this.gameMessage = 'P2 to move';
+            if(move == this.last_moves[0]){
+                this.gameMessage = 'P2 wins';
+            } else if(this.players[0] == this.players[1]){
+                this.gameMessage = 'P1 wins';
+            }
+        } else {
+            this.gameMessage = 'P1 to move';
+            if(move == this.last_moves[1]){
+                this.gameMessage = 'P1 wins';
+            } else if(this.players[0] == this.players[1]){
+                this.gameMessage = 'P2 wins';
+            }
+        }
+
+        // Check if someone won
+        if(this.gameMessage.indexOf('wins') > -1){
+            this.reset();
+        }
+
+        // Update last_moves en player_to_move
+        if(this.player_to_move == 0){
+            this.last_moves = [move, this.last_moves[1]];
+        } else {
+            this.last_moves = [this.last_moves[0], move];
+        }
+        this.player_to_move = (this.player_to_move + 1) % 2;
     };
 
     this.containsPlayer = function(player_num, x, y){
@@ -83,4 +115,13 @@ function Game(){
         this.players[0][0] = x;
         this.players[0][1] = y;
     };
+
+    this.reset = function(){
+        this.players = [
+            [0, 0],
+            [3, 3]
+        ];
+        this.last_moves = [-1, -1];
+        this.player_to_move = 0;
+    }
 }
