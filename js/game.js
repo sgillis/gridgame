@@ -10,58 +10,39 @@ function Game(){
 
     this.gameMessage = 'P1 to move';
 
-    this.movePlayer = function($event){
+    this.getKey = function($event){
         // Get move
         // Move can be
         //  0
         // 4 6
         //  8
         var move = -1;
-        if(this.player_to_move == 0){
-            if($event.keyCode == 119){
-                // w
-                if(this.players[0][1] > 0){
-                    move = 0;
-                }
-            } else if($event.keyCode == 97){
-                // a
-                if(this.players[0][0] > 0){
-                    move = 4;
-                }
-            } else if($event.keyCode == 115){
-                // s
-                if(this.players[0][1] < this.max_range){
-                    move = 8;
-                }
-            } else if($event.keyCode == 100){
-                // d
-                if(this.players[0][0] < this.max_range){
-                    move = 6;
-                }
+        if($event.keyCode == 119 || $event.keyCode == 105){
+            // w or i
+            if(this.players[0][1] > 0){
+                move = 0;
             }
-        } else if(this.player_to_move == 1){
-            if($event.keyCode == 105){
-                // w
-                if(this.players[1][1] > 0){
-                    move = 0;
-                }
-            } else if($event.keyCode == 106){
-                // a
-                if(this.players[1][0] > 0){
-                    move = 4;
-                }
-            } else if($event.keyCode == 107){
-                // s
-                if(this.players[1][1] < this.max_range){
-                    move = 8;
-                }
-            } else if($event.keyCode == 108){
-                // d
-                if(this.players[1][0] < this.max_range){
-                    move = 6;
-                }
+        } else if($event.keyCode == 97 || $event.keyCode == 106){
+            // a or j
+            if(this.players[0][0] > 0){
+                move = 4;
+            }
+        } else if($event.keyCode == 115 || $event.keyCode == 107){
+            // s or k
+            if(this.players[0][1] < this.max_range){
+                move = 8;
+            }
+        } else if($event.keyCode == 100 || $event.keyCode == 108){
+            // d or l
+            if(this.players[0][0] < this.max_range){
+                move = 6;
             }
         }
+        return move
+    }
+
+    this.movePlayer = function($event){
+        var move = this.getKey($event)
 
         // Make move
         if(move > -1){
@@ -93,11 +74,6 @@ function Game(){
             }
         }
 
-        // Check if someone won
-        if(this.gameMessage.indexOf('wins') > -1){
-            this.reset();
-        }
-
         // Update last_moves en player_to_move
         if(this.player_to_move == 0){
             this.last_moves = [move, this.last_moves[1]];
@@ -105,6 +81,11 @@ function Game(){
             this.last_moves = [this.last_moves[0], move];
         }
         this.player_to_move = (this.player_to_move + 1) % 2;
+
+        // Check if someone won
+        if(this.gameMessage.indexOf('wins') > -1){
+            this.reset();
+        }
     };
 
     this.containsPlayer = function(player_num, x, y){
