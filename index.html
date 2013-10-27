@@ -14,9 +14,6 @@
                 <div class="col-md-3" ng-repeat="x in game.range" ng-click="game.updatePlayerLocation(x, y)" ng-class="{p1: game.containsPlayer(0, x, y), p2: game.containsPlayer(1, x, y)}">
                 </div>
             </div>
-            <pre ng-bind="game.players|json"></pre>
-            <pre ng-bind="game.player_to_move"></pre>
-            <pre ng-bind="game.last_moves"></pre>
         </div>
     </div>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.0-rc.3/angular.js"></script>
