@@ -1,4 +1,8 @@
 function Game(){
+    // --------------------
+    // Initialize variables
+    // --------------------
+
     this.max_range = 3;
     this.range = [0, 1, 2, 3];
     this.players = [
@@ -9,6 +13,10 @@ function Game(){
     this.last_moves = [-1, -1];
 
     this.gameMessage = 'P1 to move';
+
+    // --------------
+    // Game functions
+    // --------------
 
     this.getKey = function($event){
         // Get move
@@ -52,14 +60,14 @@ function Game(){
             this.gameMessage = 'P2 to move';
             if(move == this.last_moves[0]){
                 this.gameMessage = 'P2 wins';
-            } else if(this.players[0] == this.players[1]){
+            } else if(this.players[0].compare(this.players[1])){
                 this.gameMessage = 'P1 wins';
             }
         } else {
             this.gameMessage = 'P1 to move';
             if(move == this.last_moves[1]){
                 this.gameMessage = 'P1 wins';
-            } else if(this.players[0] == this.players[1]){
+            } else if(this.players[0].compare(this.players[1])){
                 this.gameMessage = 'P2 wins';
             }
         }
