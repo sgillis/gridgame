@@ -82,11 +82,6 @@ function Game(){
         return this.players[player_num][0] == x && this.players[player_num][1] == y;
     };
 
-    this.updatePlayerLocation = function(x, y){
-        this.players[0][0] = x;
-        this.players[0][1] = y;
-    };
-
     this.reset = function(){
         this.players = [
             [0, 0],
