@@ -5,10 +5,11 @@ function Game(){
 
     this.max_range = 3;
     this.range = [0, 1, 2, 3];
-    this.players = [
-        [0, 0],
-        [3, 3]
-    ];
+    // this.players = [
+    //     [0, 0],
+    //     [3, 3]
+    // ];
+    this.players = randomPositions(this.max_range);
     this.player_to_move = 0;
     this.last_moves = [-1, -1];
 
@@ -91,10 +92,7 @@ function Game(){
     };
 
     this.reset = function(){
-        this.players = [
-            [0, 0],
-            [3, 3]
-        ];
+        this.players = randomPositions(this.max_range);
         this.last_moves = [-1, -1];
         this.player_to_move = 0;
     }
