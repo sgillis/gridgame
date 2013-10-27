@@ -40,6 +40,13 @@ function Game(){
             this.players[this.player_to_move][0] += 1;
         }
 
+        // Update game status if a move was made
+        if(move > -1){
+            this.updateGameStatus(move);
+        }
+    };
+
+    this.updateGameStatus = function(move){
         // Check game status
         if(this.player_to_move == 0){
             this.gameMessage = 'P2 to move';
@@ -63,9 +70,7 @@ function Game(){
         } else {
             this.last_moves = [this.last_moves[0], move];
         }
-        if(move > -1){
-            this.player_to_move = (this.player_to_move + 1) % 2;
-        }
+        this.player_to_move = (this.player_to_move + 1) % 2;
 
         // Check if someone won
         if(this.gameMessage.indexOf('wins') > -1){
