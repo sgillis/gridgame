@@ -40,13 +40,29 @@ function Game(){
         var move = this.getKey($event)
         // Make move
         if(move == 0){
-            this.players[this.player_to_move][1] -= 1;
+            if(this.players[this.player_to_move][1] > 0){
+                this.players[this.player_to_move][1] -= 1;
+            } else {
+                move = -1;
+            }
         } else if(move == 1){
-            this.players[this.player_to_move][0] -= 1;
+            if(this.players[this.player_to_move][0] > 0){
+                this.players[this.player_to_move][0] -= 1;
+            } else {
+                move = -1;
+            }
         } else if(move == 2){
-            this.players[this.player_to_move][1] += 1;
+            if(this.players[this.player_to_move][1] < this.max_range){
+                this.players[this.player_to_move][1] += 1;
+            } else {
+                move = -1;
+            }
         } else if(move == 3){
-            this.players[this.player_to_move][0] += 1;
+            if(this.players[this.player_to_move][0] < this.max_range){
+                this.players[this.player_to_move][0] += 1;
+            } else {
+                move = -1;
+            }
         }
 
         // Update game status if a move was made
