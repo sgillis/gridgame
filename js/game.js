@@ -29,18 +29,15 @@ function Game(){
 
     this.movePlayer = function($event){
         var move = this.getKey($event)
-
         // Make move
-        if(move > -1){
-            if(move == 0){
-                this.players[this.player_to_move][1] -= 1;
-            } else if(move == 1){
-                this.players[this.player_to_move][0] -= 1;
-            } else if(move == 2){
-                this.players[this.player_to_move][1] += 1;
-            } else if(move == 3){
-                this.players[this.player_to_move][0] += 1;
-            }
+        if(move == 0){
+            this.players[this.player_to_move][1] -= 1;
+        } else if(move == 1){
+            this.players[this.player_to_move][0] -= 1;
+        } else if(move == 2){
+            this.players[this.player_to_move][1] += 1;
+        } else if(move == 3){
+            this.players[this.player_to_move][0] += 1;
         }
 
         // Check game status
@@ -66,7 +63,9 @@ function Game(){
         } else {
             this.last_moves = [this.last_moves[0], move];
         }
-        this.player_to_move = (this.player_to_move + 1) % 2;
+        if(move > -1){
+            this.player_to_move = (this.player_to_move + 1) % 2;
+        }
 
         // Check if someone won
         if(this.gameMessage.indexOf('wins') > -1){
