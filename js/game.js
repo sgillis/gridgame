@@ -14,31 +14,17 @@ function Game(){
         // Get move
         // Move can be
         //  0
-        // 4 6
-        //  8
-        var move = -1;
-        if($event.keyCode == 119 || $event.keyCode == 105){
-            // w or i
-            if(this.players[0][1] > 0){
-                move = 0;
-            }
-        } else if($event.keyCode == 97 || $event.keyCode == 106){
-            // a or j
-            if(this.players[0][0] > 0){
-                move = 4;
-            }
-        } else if($event.keyCode == 115 || $event.keyCode == 107){
-            // s or k
-            if(this.players[0][1] < this.max_range){
-                move = 8;
-            }
-        } else if($event.keyCode == 100 || $event.keyCode == 108){
-            // d or l
-            if(this.players[0][0] < this.max_range){
-                move = 6;
-            }
+        // 1 3
+        //  2
+        // 
+        // The keyCodes variable contains the keys coupled to the moves as
+        // [keyCode: 0, keyCode: 1, keyCode: 2, keyCode: 3]
+        if(this.player_to_move == 0){
+            var keyCodes = [119, 97, 115, 100];
+        } else {
+            var keyCodes = [105, 106, 107, 108];
         }
-        return move
+        return keyCodes.indexOf($event.keyCode);
     }
 
     this.movePlayer = function($event){
@@ -48,11 +34,11 @@ function Game(){
         if(move > -1){
             if(move == 0){
                 this.players[this.player_to_move][1] -= 1;
-            } else if(move == 4){
+            } else if(move == 1){
                 this.players[this.player_to_move][0] -= 1;
-            } else if(move == 8){
+            } else if(move == 2){
                 this.players[this.player_to_move][1] += 1;
-            } else if(move == 6){
+            } else if(move == 3){
                 this.players[this.player_to_move][0] += 1;
             }
         }
