@@ -24,7 +24,7 @@ Array.prototype.compare = function(array){
 var randomPositions = function(max_range){
     var pos_p1 = [ Math.floor(Math.random()*(max_range+1)),
                    Math.floor(Math.random()*(max_range+1)) ];
-    var pos_p2 = [ (pos_p1[0] + Math.floor(Math.random()*max_range + 1)) % max_range,
-                   (pos_p1[1] + Math.floor(Math.random()*max_range + 1)) % max_range ];
+    var pos_p2 = [ (pos_p1[0] + Math.floor(Math.random()*(max_range-2)) + 1) % max_range,
+                   (pos_p1[1] + Math.floor(Math.random()*(max_range-2)) + 1) % max_range ];
     return [ pos_p1, pos_p2];
 }
